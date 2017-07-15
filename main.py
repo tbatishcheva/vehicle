@@ -1,136 +1,208 @@
 class Vehicle(object):
     def __init__(self, name):
         self.name = name
+        self._wheel_count = 0
+        self._speed = 0
+        self._body_type = ''
+        self._driving_wheels = ''
+        self._drive_unit = ''
+        self._gearbox_type = ''
+        self._dimensions = ''
+        self._tank_volume = ''
+        self._color = ''
+        # self._engine = ''
 
     sedan = 'sedan'
     jeep = 'jeep'
     driving_wheels_popular = '4x2'
     driving_wheels_jeep = '4x4'
+    driving_wheels_base = 'x2'
 
     @property
-    def _wheel_count(self):
-        return self.wheel_count
+    def wheel_count(self):
+        return self._wheel_count
 
-    @_wheel_count.setter
-    def _wheel_count(self, value):
-        self.wheel_count = value
-
-    @property
-    def _speed(self):
-        print(self.speed)
-
-    @_speed.setter
-    def _speed(self, value):
-        self.speed = value
+    @wheel_count.setter
+    def wheel_count(self, value):
+        self._wheel_count = value
 
     @property
-    def _body_type(self):
-        print(self.body_type)
+    def speed(self):
+        return self._speed
 
-    @_body_type.setter
-    def _body_type(self, value):
-        self.body_type = value
+    @speed.setter
+    def speed(self, value):
+        self._speed = value
 
     @property
-    def _driving_wheels(self):
-        print(self.driving_wheels)
+    def body_type(self):
+        return self._body_type
 
-    @_driving_wheels.setter
-    def _driving_wheels(self, value):
-        print(self.body_type)
-        print(self.sedan)
-        if self.body_type == self.sedan:
-            self.driving_wheels = self.driving_wheels_popular
-        elif self.body_type == self.jeep:
-            self.driving_wheels = self.driving_wheels_jeep
+    @body_type.setter
+    def body_type(self, value):
+        self._body_type = value
+        if self._body_type == self.sedan:
+            self._driving_wheels = self.driving_wheels_popular
+        elif self._body_type == self.jeep:
+            self._driving_wheels = self.driving_wheels_jeep
         else:
-            self.driving_wheels = value
+            self._driving_wheels = str(self._wheel_count) + self.driving_wheels_base
 
     @property
-    def _drive_unit(self):
-        print(self.drive_unit)
-
-    @_drive_unit.setter
-    def _drive_unit(self, value):
-        self.drive_unit = value
+    def driving_wheels(self):
+        return self._driving_wheels
 
     @property
-    def _gearbox_type(self):
-        print(self.gearbox_type)
+    def drive_unit(self):
 
-    @_gearbox_type.setter
-    def _gearbox_type(self, value):
-        self.gearbox_type = value
+        return self._drive_unit
 
-    @property
-    def _dimensions(self):
-        print(self.dimensions)
-
-    @_dimensions.setter
-    def _dimensions(self, value):
-        self.dimensions = value
+    @drive_unit.setter
+    def drive_unit(self, value):
+        self._drive_unit = value
 
     @property
-    def _tank_volume(self):
-        print(self.volumetank)
+    def gearbox_type(self):
+        return self._gearbox_type
 
-    @_tank_volume.setter
-    def _tank_volume(self, value):
-        self.tank_volume = value
-
-    @property
-    def _color(self):
-        print(self.color)
-
-    @_color.setter
-    def _color(self, value):
-        self.color = value
+    @gearbox_type.setter
+    def gearbox_type(self, value):
+        self._gearbox_type = value
 
     @property
-    def _engine(self):
-        print(self.engine)
+    def dimensions(self):
+        return self._dimensions
 
-    @_engine.setter
-    def _engine(self, value):
-        self.engine = Engine(value)
+    @dimensions.setter
+    def dimensions(self, value):
+        self._dimensions = value
+
+    @property
+    def tank_volume(self):
+        return self._tank_volume
+
+    @tank_volume.setter
+    def tank_volume(self, value):
+        self._tank_volume = value
+
+    @property
+    def color(self):
+        return self._color
+
+    @color.setter
+    def color(self, value):
+        self._color = value
+
+    @property
+    def engine(self):
+        return self._engine
+
+    @engine.setter
+    def engine(self, value):
+        self._engine = Engine(value)
 
     def beep(self):
         pass
 
-    def run(self):
-        s = 1
+    def run(self, letter):
+        s = 0
+        run_value = ''
         while s < self.speed:
-            print('R', end='')
+            run_value = run_value + letter
             s += 1
+        return run_value
 
-class VehiclePrinter():
-    def Printer(self, vehicle):
+
+class VehiclePrinter:
+    def print_properties(self, vehicle):
         print('название: ', format(vehicle.name))
         print('количество колес: ', format(vehicle.wheel_count))
         print('скорость: ', format(vehicle.speed))
         print('тип кузова: ', format(vehicle.body_type))
-        print('привод: ', format(vehicle.privod))
-        print('КП: ', format(vehicle.typekp))
+        print('Веудущие колеса: ', format(vehicle.driving_wheels))
+        print('тип кузова: ', format(vehicle.drive_unit))
+        print('КП: ', format(vehicle.gearbox_type))
         print('габариты: ', format(vehicle.dimensions))
-        print('объем бака: ', format(vehicle.volumetank))
+        print('объем бака: ', format(vehicle.tank_volume))
+        print('цвет: ', format(vehicle.color))
         print('двигатель: ', format(vehicle.engine.name))
 
 
 class Engine:
     def __init__(self, name):
         self.name = name
+        self._power = 0
+        self._engine_capacity = 0
+        self._count_cylinders = 0
+        self._material = ''
+        self._fuel_consumption = 0
+        self._fuel_type = ''
+        self._oil_consumption = 0
+        self._oil_type = ''
 
-    def createproperties(self, power, volume, countcylindr,
-                         material, fuelconsump, typefuel,
-                         oilconsump, typeoil):
-        self.power = power
-        self.volume = volume
-        self.countcylindr = countcylindr
-        self.material = material
-        self.fuelconsump = fuelconsump
-        self.typefuel = typefuel
-        self.oilconsump = oilconsump
-        self.typeoil = typeoil
+    @property
+    def power(self):
+        return self._power
+
+    @power.setter
+    def power(self, value):
+        self._power = value
+
+    @property
+    def engine_capacity(self):
+        return self._engine_capacity
+
+    @engine_capacity.setter
+    def engine_capacity(self, value):
+        self._engine_capacity = value
+
+    @property
+    def count_cylinders(self):
+        return self._count_cylinders
+
+    @count_cylinders.setter
+    def count_cylinders(self, value):
+        self._count_cylinders = value
+
+    @property
+    def material(self):
+        return self._material
+
+    @material.setter
+    def material(self, value):
+        self._material = value
+
+    @property
+    def fuel_consumption(self):
+        return self._fuel_consumption
+
+    @fuel_consumption.setter
+    def fuel_consumption(self, value):
+        self._fuel_consumption = value
+
+    @property
+    def fuel_type(self):
+        return self._fuel_type
+
+    @fuel_type.setter
+    def fuel_type(self, value):
+        self._fuel_type = value
+
+    @property
+    def oil_consumption(self):
+        return self._oil_consumption
+
+    @oil_consumption.setter
+    def oil_consumption(self, value):
+        self._oil_consumption = value
+
+    @property
+    def oil_type(self):
+        return self._oil_type
+
+    @oil_type.setter
+    def oil_type(self, value):
+        self._oil_type = value
 
     def turnOn(self):
         pass
@@ -138,26 +210,13 @@ class Engine:
     def turnOff(self):
         pass
 
-    def info(self):
-        print('мощность: ', format(self.power))
-        print('объем: ', format(self.volume))
-        print('количество цилиндров: ', format(self.countcylindr))
-        print('материал: ', format(self.material))
-        print('расход топлива: ', format(self.fuelconsump))
-        print('тип топлива: ', format(self.typefuel))
-        print('расход масла: ', format(self.oilconsump))
-        print('тип масла: ', format(self.typeoil))
-
-
 class EnginePrinter:
-    def printer(self, engine):
+    def print_properties(self, engine):
         print('мощность: ', format(engine.power))
-        # todo
-
-car = Vehicle('car')
-car.body_type = 'sedan'
-car.driving_wheels = '2'
-print(car.body_type == car.sedan)
-print(car.body_type)
-print(car.sedan)
-print(car.driving_wheels)
+        print('объем: ', format(engine.engine_capacity))
+        print('количество цилиндров: ', format(engine.count_cylinders))
+        print('материал: ', format(engine.material))
+        print('расход топлива: ', format(engine.fuel_consumption))
+        print('тип топлива: ', format(engine.fuel_type))
+        print('расход масла: ', format(engine.oil_consumption))
+        print('тип масла: ', format(engine.oil_type))
